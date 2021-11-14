@@ -11,16 +11,16 @@ void Game::Run()
 {
 	const auto size = sf::Vector2u{ 1280, 800 };
 	
-	m_window.create({ size.x, size.y }, "Ludum Dare #45", sf::Style::Default, sf::ContextSettings{ 0, 0, 8 });
+	m_window.create({ size.x, size.y }, "Martis Opibus", sf::Style::Default, sf::ContextSettings{ 0, 0, 8 });
 	m_window.setFramerateLimit(60);
 
-	auto highlight = sf::RectangleShape{ {32.f,32.f} };
+	auto highlight = sf::RectangleShape{ { 32.f, 32.f } };
 	highlight.setFillColor(sf::Color::Transparent);
 	highlight.setOutlineThickness(1.f);
 	highlight.setOutlineColor(sf::Color::Green);
 	
 	auto unitTexture = sf::Texture{};
-	if(!unitTexture.loadFromFile("assets/unit.png"))
+	if (!unitTexture.loadFromFile("assets/unit.png"))
 	{
 		throw std::exception{ "Couldn't load unit texture" };
 	}

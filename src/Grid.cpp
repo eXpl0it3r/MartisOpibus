@@ -1,13 +1,14 @@
 #include "Grid.hpp"
 
-#include <SFML/Graphics/RenderTarget.hpp>
 #include <random>
 #include <queue>
 #include <unordered_set>
 #include <unordered_map>
 
+#include <SFML/Graphics/RenderTarget.hpp>
+
 Grid::Grid(const sf::Vector2u& size, sf::Texture& texture)
-: m_tileTexture(texture)
+	: m_tileTexture{ texture }
 {
 	m_collision = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
 					10,  1,  2,  2,  5,  5,  2,  5,  2,  5,  5,  5,  2,  2,  2,  2,  2,  5,  5,  2,  2,  5,  5,  2,  2,  4, 10, 10, 10,  1,  5,  5,  5,  2,  2,  5,  5,  4, 10, 10,
@@ -39,19 +40,19 @@ Grid::Grid(const sf::Vector2u& size, sf::Texture& texture)
 	
 	for (auto x = 0u; x < size.x / 32u; ++x)
 	{
-		m_gridLines.emplace_back(sf::Vector2f{ x * 32.f + 0.5f,  0.5f },  gridColor);
-		m_gridLines.emplace_back(sf::Vector2f{ x * 32.f + 0.5f,  static_cast<float>(size.y) + 0.5f },  gridColor);
+		m_gridLines.emplace_back(sf::Vector2f{ x * 32.f + 0.5f, 0.5f }, gridColor);
+		m_gridLines.emplace_back(sf::Vector2f{ x * 32.f + 0.5f, static_cast<float>(size.y) + 0.5f }, gridColor);
 	}
 	
 	for (auto y = 0u; y < size.y / 32u; ++y)
 	{
-		m_gridLines.emplace_back(sf::Vector2f{ 0.5f,  y * 32.f + 0.5f },  gridColor);
-		m_gridLines.emplace_back(sf::Vector2f{ static_cast<float>(size.x) + 0.5f,  y * 32.f + 0.5f },  gridColor);
+		m_gridLines.emplace_back(sf::Vector2f{ 0.5f,  y * 32.f + 0.5f }, gridColor);
+		m_gridLines.emplace_back(sf::Vector2f{ static_cast<float>(size.x) + 0.5f,  y * 32.f + 0.5f }, gridColor);
 	}
 
 	std::random_device randomDevice;
 	std::mt19937 randomEngine(randomDevice());
-	const std::uniform_int_distribution<> distribution(0,  8);
+	const std::uniform_int_distribution<> distribution(0, 8);
 
 	for (auto y = 0u; y < size.y / 32u; ++y)
 	{
@@ -63,11 +64,11 @@ Grid::Grid(const sf::Vector2u& size, sf::Texture& texture)
 
 			if (tileType == 0)
 			{
-				tilePosition = { 0.f,  randomBlankTile };
+				tilePosition = { 0.f, randomBlankTile };
 			}
 			else if (tileType > 0)
 			{
-				tilePosition = { 32.f,  (tileType - 1) * 32.f };
+				tilePosition = { 32.f, (tileType - 1) * 32.f };
 			}
 			
 			m_tiles.emplace_back(sf::Vector2f{ x * 32.f, y * 32.f }, sf::Vector2f{ tilePosition.x, tilePosition.y });
@@ -165,7 +166,5 @@ unsigned int Grid::PositionToIndex(const sf::Vector2f& position, const float til
 
 sf::Vector2f Grid::IndexToPosition(unsigned int index, const float tileSize, const unsigned int gridWidth) const
 {
-	return { (index - ((index / gridWidth) * gridWidth)) * tileSize + 16.f,
-		(index / gridWidth) * tileSize + 16.f
-	};
+	return { (index - ((index / gridWidth) * gridWidth)) * tileSize + 16.f, (index / gridWidth) * tileSize + 16.f };
 }

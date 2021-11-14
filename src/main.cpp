@@ -1,5 +1,7 @@
-#include "Game.hpp"
+#include <exception>
 #include <iostream>
+
+#include "Game.hpp"
 
 #define SFML_DEFINE_DISCRETE_GPU_PREFERENCE
 
@@ -13,6 +15,6 @@ int main()
 	}
 	catch (std::exception& exception)
 	{
-		std::cerr << "An unhandled exception was thrown:\n" << exception.what() << "\n";
+		std::cerr << "An unhandled exception was thrown:\n" << exception.what() << std::endl;
 	}
 }

@@ -1,8 +1,9 @@
 #pragma once
 
-#include <SFML/System/Vector2.hpp>
 #include <limits>
 #include <cmath>
+
+#include <SFML/System/Vector2.hpp>
 
 inline bool InRange(const sf::Vector2f& a, const sf::Vector2f& b, const float epsilon = std::numeric_limits<float>::epsilon())
 {

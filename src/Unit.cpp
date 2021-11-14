@@ -1,13 +1,15 @@
 #include "Unit.hpp"
 
+#include <iostream>
+
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/System/Time.hpp>
+
 #include "MathUtil.hpp"
-#include <iostream>
 
 Unit::Unit(const sf::Texture& texture)
-: m_isSelected(false)
+	: m_isSelected{ false }
 {
 	m_currentTarget = { 80.f, 80.f };
 
