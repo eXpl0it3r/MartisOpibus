@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include <exception>
+
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
@@ -22,13 +24,13 @@ void Game::Run()
 	auto unitTexture = sf::Texture{};
 	if (!unitTexture.loadFromFile("assets/unit.png"))
 	{
-		throw std::exception{ "Couldn't load unit texture" };
+		throw std::runtime_error{ "Couldn't load unit texture" };
 	}
 	
 	auto backgroundTexture = sf::Texture{};
 	if (!backgroundTexture.loadFromFile("assets/background.png"))
 	{
-		throw std::exception{ "Couldn't load background texture" };
+		throw std::runtime_error{ "Couldn't load background texture" };
 	}
 
 	auto unit = Unit{ unitTexture };

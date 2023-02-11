@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.15)
 project(MartisOpibus LANGUAGES CXX)
 
 # Set options
+option(MARTISOPIBUS_STATIC_LIBS "Use static libraries?" OFF)
 option(MARTISOPIBUS_STATIC_STD_LIBS "Use statically linked standard/runtime libraries? This option must match the one used for SFML." OFF)
 
 # Martis Opibus uses C++17 features
@@ -11,7 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Request static SFML libraries when building statically
-if(NOT BUILD_SHARED_LIBS)
+if(MARTISOPIBUS_STATIC_LIBS)
 	set(SFML_STATIC_LIBRARIES true)
 endif()
 

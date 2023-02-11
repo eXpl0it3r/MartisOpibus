@@ -52,7 +52,7 @@ Grid::Grid(const sf::Vector2u& size, sf::Texture& texture)
 
 	std::random_device randomDevice;
 	std::mt19937 randomEngine(randomDevice());
-	const std::uniform_int_distribution<> distribution(0, 8);
+	std::uniform_int_distribution<> distribution(0, 8);
 
 	for (auto y = 0u; y < size.y / 32u; ++y)
 	{

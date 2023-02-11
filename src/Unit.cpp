@@ -1,6 +1,6 @@
 #include "Unit.hpp"
 
-#include <iostream>
+#include <cmath>
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
@@ -69,7 +69,7 @@ void Unit::Update(const sf::Time& deltaTime)
 		const auto velocity = 200.f * direction;
 		m_nextPosition += velocity * deltaTime.asSeconds();
 
-		const auto angle = std::atan2f(direction.y, direction.x);
+		const auto angle = std::atan2(direction.y, direction.x);
 		m_sprite.setRotation(RadToDeg(angle));
 		
 		m_sprite.setPosition(sf::Vector2f{ sf::Vector2i{ m_nextPosition } });
